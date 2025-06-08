@@ -1,3 +1,4 @@
+import Game from "./scenes/Game.js";
 import PrimerMapa from "./scenes/Primer-Mapa.js";
 import SegundoMapa from "./scenes/Segundo-Mapa.js";
 import TercerMapa from "./scenes/Tercer-Mapa.js";
@@ -28,7 +29,7 @@ const config = {
     },
   },
   
-  scene: [PrimerMapa, SegundoMapa, TercerMapa, WinScene],
+  scene: [Game, PrimerMapa, SegundoMapa, TercerMapa, WinScene],
 };
 
 

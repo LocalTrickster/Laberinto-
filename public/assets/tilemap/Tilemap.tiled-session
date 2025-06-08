@@ -61,7 +61,7 @@
             "scale": 0.4895138888888888,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 1420.7972762093916,
+                "x": 1094.9638246559796,
                 "y": 610.8100439778692
             }
         },
@@ -69,7 +69,7 @@
             "scaleInDock": 1
         }
     },
-    "last.imagePath": "F:/JSEjercicios/Laberinto-/public/assets",
+    "last.imagePath": "F:/JSEjercicios/Laberinto-/public/assets/tilemap",
     "map.height": 50,
     "map.lastUsedFormat": "tmx",
     "map.width": 50,
