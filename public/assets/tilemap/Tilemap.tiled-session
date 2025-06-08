@@ -115,7 +115,7 @@
     },
     "last.imagePath": "F:/JSEjercicios/Laberinto-/public/assets/tilemap",
     "map.height": 50,
-    "map.lastUsedFormat": "tmx",
+    "map.lastUsedFormat": "json",
     "map.width": 50,
     "openFiles": [
         "map.json",
