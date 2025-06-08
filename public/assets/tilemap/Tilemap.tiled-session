@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "map.json",
     "expandedProjectPaths": [
         "."
     ],
@@ -38,9 +38,7 @@
         },
         "Primer mapa.tmx": {
             "expandedObjectLayers": [
-                6,
-                5,
-                7
+                5
             ],
             "scale": 0.5,
             "selectedLayer": 2,
@@ -52,14 +50,23 @@
         "Primer mapa.tmx#SampleA": {
             "scaleInDock": 1
         },
+        "Primer-mapa.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 802,
+                "y": 828
+            }
+        },
+        "Primer-mapa.tmx#SampleA": {
+            "scaleInDock": 1
+        },
         "Segundo-Mapa.tmx": {
             "expandedObjectLayers": [
-                4,
-                3,
-                5
+                3
             ],
             "scale": 0.5,
-            "selectedLayer": 1,
+            "selectedLayer": 2,
             "viewCenter": {
                 "x": 906,
                 "y": 782
@@ -73,8 +80,8 @@
             "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 800,
-                "y": 801
+                "x": 814,
+                "y": 822
             }
         },
         "Tercer-mapa.tmx#SampleA": {
@@ -99,7 +106,7 @@
             "selectedLayer": 2,
             "viewCenter": {
                 "x": 360.4921394395078,
-                "y": 372.7956254272043
+                "y": 346.9583048530417
             }
         },
         "map.tmx#tileset": {
@@ -111,11 +118,17 @@
     "map.lastUsedFormat": "tmx",
     "map.width": 50,
     "openFiles": [
-        "map.json"
+        "map.json",
+        "Primer mapa.tmx",
+        "Segundo-Mapa.tmx",
+        "Tercer-mapa.tmx"
     ],
     "project": "Tilemap.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "Tercer-mapa.tmx",
+        "Segundo-Mapa.tmx",
+        "Primer mapa.tmx",
         "map.json"
     ],
     "tileset.embedInMap": true,
