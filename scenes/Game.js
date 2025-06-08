@@ -20,7 +20,7 @@ export default class Game extends Phaser.Scene {
   }
 
   preload() {
-    // Load all levels
+    
     LEVELS.forEach((level, i) => {
       this.load.tilemapTiledJSON(`level${i}`, `assets/${level}`);
     });
@@ -28,19 +28,18 @@ export default class Game extends Phaser.Scene {
   }
 
   create() {
-    // Load the current level
+  
     const map = this.make.tilemap({ key: `level${this.currentLevel}` });
 
-    // Parameters are the name you gave the tileset in Tiled and then the key of the tileset image in
-    // Phaser's cache (i.e. the name you used in preload)
+   
     const tileset = map.addTilesetImage("tileset", "tileset");
 
-    // Parameters: layer name (or index) from Tiled, tileset, x, y
+    
     const belowLayer = map.createLayer("Fondo", tileset, 0, 0);
     const platformLayer = map.createLayer("Plataformas", tileset, 0, 0);
     const objectsLayer = map.getObjectLayer("Objetos");
 
-    // Find in the Object Layer, the name "dude" and get position
+   
     const spawnPoint = map.findObject(
       "Objetos",
       (obj) => obj.name === "player"
@@ -78,28 +77,16 @@ export default class Game extends Phaser.Scene {
     platformLayer.setCollisionByProperty({ esColisionable: true });
     this.physics.add.collider(this.player, platformLayer);
 
-    // tiles marked as colliding
-    /*
-    const debugGraphics = this.add.graphics().setAlpha(0.75);
-    platformLayer.renderDebug(debugGraphics, {
-      tileColor: null, // Color of non-colliding tiles
-      collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
-      faceColor: new Phaser.Display.Color(40, 39, 37, 255), // Color of colliding face edges
-    });
-    */
-
-    // Create empty group of starts
+   
     this.stars = this.physics.add.group();
 
-    // find object layer
-    // if type is "stars", add to stars group
+   
     objectsLayer.objects.forEach((objData) => {
       console.log(objData);
       const { x = 0, y = 0, name, type } = objData;
       switch (type) {
         case "star": {
-          // add star to scene
-          // console.log("estrella agregada: ", x, y);
+         
           const star = this.stars.create(x, y, "star");
           star.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
           break;
@@ -107,7 +94,7 @@ export default class Game extends Phaser.Scene {
       }
     });
 
-    // add collision between player and stars
+  
     this.physics.add.collider(
       this.player,
       this.stars,
@@ -115,7 +102,7 @@ export default class Game extends Phaser.Scene {
       null,
       this
     );
-    // add overlap between stars and platform layer
+    
     this.physics.add.collider(this.stars, platformLayer);
 
     this.scoreText = this.add.text(16, 16, `Score: ${this.score}`, {
@@ -125,7 +112,7 @@ export default class Game extends Phaser.Scene {
   }
 
   update() {
-    // update game objects
+   
     if (this.cursors.left.isDown) {
       this.player.setVelocityX(-160);
 
@@ -157,7 +144,7 @@ export default class Game extends Phaser.Scene {
     this.scoreText.setText(`Score: ${this.score}`);
 
     if (this.stars.countActive(true) === 0) {
-      //  A new batch of stars to collect
+    
       this.stars.children.iterate(function (child) {
         child.enableBody(true, child.x, 0, true, true);
       });
@@ -176,7 +163,7 @@ export default class Game extends Phaser.Scene {
     if (this.currentLevel < LEVELS.length - 1) {
       this.scene.restart({ level: this.currentLevel + 1, score: this.score });
     } else {
-      // Game completed
+      
       this.scene.start("WinScene", { score: this.score });
     }
   }
