@@ -1,27 +1,35 @@
 // URL to explain PHASER scene: https://rexrainbow.github.io/phaser3-rex-notes/docs/site/scene/
 
+const LEVELS = [
+  "tilemap/Primer-Mapa.tmx",
+  "tilemap/Segundo-Mapa.tmx",
+  "tilemap/Tercer-Mapa.tmx",
+];
+
 export default class Game extends Phaser.Scene {
   constructor() {
-    super("game");
-  }
-
-  init() {
+    super("Game");
+    this.currentLevel = 0;
     this.score = 0;
   }
 
-  preload() {
-    this.load.tilemapTiledJSON("map", "public/assets/tilemap/map.json");
-    this.load.image("tileset", "public/assets/texture.png");
-    this.load.image("star", "public/assets/star.png");
+  init(data) {
+    
+    this.currentLevel = data.level || 0;
+    this.score = data.score || 0;
+  }
 
-    this.load.spritesheet("dude", "./public/assets/dude.png", {
-      frameWidth: 32,
-      frameHeight: 48,
+  preload() {
+    // Load all levels
+    LEVELS.forEach((level, i) => {
+      this.load.tilemapTiledJSON(`level${i}`, `assets/${level}`);
     });
+    /
   }
 
   create() {
-    const map = this.make.tilemap({ key: "map" });
+    // Load the current level
+    const map = this.make.tilemap({ key: `level${this.currentLevel}` });
 
     // Parameters are the name you gave the tileset in Tiled and then the key of the tileset image in
     // Phaser's cache (i.e. the name you used in preload)
@@ -154,5 +162,37 @@ export default class Game extends Phaser.Scene {
         child.enableBody(true, child.x, 0, true, true);
       });
     }
+  }
+
+  collectArtifact(player, artifact) {
+    artifact.destroy();
+    this.score += 10;
+    if (this.artifacts.countActive(true) === 0) {
+      this.nextLevel();
+    }
+  }
+
+  nextLevel() {
+    if (this.currentLevel < LEVELS.length - 1) {
+      this.scene.restart({ level: this.currentLevel + 1, score: this.score });
+    } else {
+      // Game completed
+      this.scene.start("WinScene", { score: this.score });
+    }
+  }
+}
+
+export default class WinScene extends Phaser.Scene {
+  constructor() {
+    super("WinScene");
+  }
+  init(data) {
+    this.score = data.score;
+  }
+  create() {
+    this.add.text(100, 100, `¡Ganaste! Score: ${this.score}`, { fontSize: '32px', fill: '#fff' });
+    this.input.once('pointerdown', () => {
+      this.scene.start("Game", { level: 0, score: 0 });
+    });
   }
 }
